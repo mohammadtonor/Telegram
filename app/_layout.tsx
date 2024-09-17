@@ -1,7 +1,7 @@
-import {Stack} from 'expo-router';
-import 'react-native-reanimated';
-import {NativeWindStyleSheet} from "nativewind";
-
+import { Slot, Stack } from "expo-router";
+import "react-native-reanimated";
+import { NativeWindStyleSheet } from "nativewind";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -9,9 +9,8 @@ NativeWindStyleSheet.setOutput({
 
 export default function RootLayout() {
   return (
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Slot />
+    </GestureHandlerRootView>
   );
 }
