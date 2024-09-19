@@ -1,10 +1,16 @@
-import { Stack } from "expo-router";
+import { Redirect, Stack } from "expo-router";
 import "react-native-reanimated";
 import { StreamChat } from "stream-chat";
 import ChatProvider from "@/Providers/ChatProvider";
+import { useAuth } from "@/Providers/AuthProvider";
+import { returnStatement } from "@babel/types";
 
-const client = StreamChat.getInstance("z7nh4c37wwgc");
 export default function HomeLayout() {
+  const { user } = useAuth();
+
+  if (!user) {
+    return <Redirect href={"/(auth)"} />;
+  }
   return (
     <ChatProvider>
       <Stack>
